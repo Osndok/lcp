@@ -47,25 +47,14 @@ const char* lcp(const int n, ...)
 	{
 		//NB: The lcp of one string is precisely that string.
 		prefix=strdup(va_arg(args, char*));
-		/*
-		{
-			char* first=va_arg(args, char*);
-			
-			prefix=malloc(strlen(first));
-			
-			prefix=strcpy(va_arg(args, char*));
-		}
-		*/
 
 		//...but can only reduce as we encounter more strings.
 		for(int i = 1; *prefix && i < n; i++)
 		{
 			char* next=va_arg(args, char*);
-			//fprintf(stderr, "cmp: '%s' & '%s'\n", prefix, next);
 
 			int i=firstDifferingCharacter(prefix, next);
 			prefix[i]='\0';
-			//fprintf(stderr, "now: '%s'\n", prefix);
 		}
 	}
 	va_end(args);
