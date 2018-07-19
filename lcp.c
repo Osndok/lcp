@@ -26,6 +26,13 @@ int firstDifferingCharacter(char*a, char*b)
 	return i;
 }
 
+void lcp_accum(char *prefix, char *next)
+{
+	int i=firstDifferingCharacter(prefix, next);
+	prefix[i]='\0';
+}
+
+//BUG: leaks return value
 const char* lcp(const int n, ...)
 {
 	if (n==0)
